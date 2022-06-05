@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import FibonacciRequestDto from '../dto/fibonacciRequest.dto';
 import SecondDegreeRequestDto from '../dto/secondDegreeRequest.dto';
@@ -16,15 +23,14 @@ export class AppController {
   @Post('fibonacci')
   calculateFibonacci(@Body() payload: FibonacciRequestDto): ServiceResponseDto {
     const { input } = payload;
-    const response = this.appService.calculateFibonacci(input);
-    return { response };
-  }
-
-  @Get()
-  async getuserbyusername(
-    @Body('username') username: string,
-  ): Promise<UserEntity> {
-    return this.userRepository.getUserByUsername(username);
+    try {
+      const response = this.appService.calculateFibonacci(input);
+      return { response };
+    } catch {
+      throw new BadRequestException(
+        'No negative indexes for fibonacci sequence',
+      );
+    }
   }
 
   @Post('secondDegreeResolver')

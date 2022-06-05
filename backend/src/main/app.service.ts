@@ -4,6 +4,9 @@ import ServiceResponseDto from '../dto/serviceResponse.dto';
 @Injectable()
 export class AppService {
   calculateFibonacci(input: number): number {
+    if (input < 0) {
+      throw new Error('No negative indexes for fibonacci sequence');
+    }
     let a = 1,
       b = 1,
       response = 1;

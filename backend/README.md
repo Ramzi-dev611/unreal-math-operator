@@ -19,13 +19,14 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This repository contains a [Nest](https://github.com/nestjs/nest) application that provides two major functionalities:
+* A fibonacci calculator taking in the body of the request the index of the element of the sequence requested and returns the desired element
+* A quadratic formula solver: an endpoints that takes as parameters three numbers a, b and c and returns the solutions x where **a x² + b x + c = 0**
 
+To simulate a communication with a database a login functionality is also created
 ## Installation
 
 ```bash
@@ -47,6 +48,17 @@ $ npm run start:prod
 
 ## Test
 
+Three types of testing where implemented in this repository: 
+* **unit Test**: this concernes the service of the major functionality mentionned earlier
+* **Integration Test**: for the login functionality
+* **e2e test**: testing the full process of the endpoint "/calculator/fibonacci"
+
+> Keep in mind that the tests suits are located next to the component ofr the feature being tested
+
+>Under the src directory a more explained description on where to find the test scripts and what was implemented
+
+To run the tests use the following commands:
+
 ```bash
 # unit tests
 $ npm run test
@@ -57,16 +69,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
