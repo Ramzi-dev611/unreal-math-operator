@@ -3,10 +3,10 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import AuthentificationResponseDto from 'src/dto/authentificationResponse.dto';
-import LoginDto from 'src/dto/login.dto';
-import { UserEntity } from 'src/user/entity/user.entity';
-import { UserService } from 'src/user/repository/user.service';
+import AuthentificationResponseDto from '../../dto/authentificationResponse.dto';
+import LoginDto from '../../dto/login.dto';
+import { UserEntity } from '../../user/entity/user.entity';
+import { UserService } from '../../user/repository/user.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { UserModule } from 'src/user/user.module';
+import { UserModule } from '../user/user.module';
 import { AuthentificationController } from './controller/authentification.controller';
 import { AuthentificationService } from './service/authentification.service';
 import * as dotenv from 'dotenv';

@@ -1,24 +1,11 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Get,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import FibonacciRequestDto from '../dto/fibonacciRequest.dto';
 import SecondDegreeRequestDto from '../dto/secondDegreeRequest.dto';
 import ServiceResponseDto from '../dto/serviceResponse.dto';
-import { UserService } from 'src/user/repository/user.service';
-import { UserEntity } from 'src/user/entity/user.entity';
-
 @Controller('calculator')
 export class AppController {
-  constructor(
-    private readonly appService: AppService,
-    private readonly userRepository: UserService,
-  ) {}
+  constructor(private readonly appService: AppService) {}
 
   @Post('fibonacci')
   calculateFibonacci(@Body() payload: FibonacciRequestDto): ServiceResponseDto {
