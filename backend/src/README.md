@@ -11,3 +11,11 @@
 => with jest i am still facing an issue with expecting an error of some form (Unauthorized or BadRequest)
 
 => Update : Fixed the issue with the exceptions
+
+**2- Integration / end to end test**
+
+* Since the application doesn't contain much interaction between services, there is no necessity or meaning in creating integrations tests
+
+* With the above being said, only end to end tests where implemented. for each endpoint there is a test suit that all can be found in the test directory at the same level as the src directory
+
+
