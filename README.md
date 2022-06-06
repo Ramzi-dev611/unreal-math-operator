@@ -17,3 +17,6 @@ So for the Software testing and the devops lab, i decided to create a nest appli
 
 ## DISCLAIMER
 The application is missing a lot of features and it is open for improvement. Who knows maybe i ll finish developping the rest of the desired features in the future
+
+## Note for Mr Wassim
+The main application is in the folder backed there you can find a readme file that will explain the testing code i implemented
