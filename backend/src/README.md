@@ -8,6 +8,6 @@
 
 * For the login functionality: a mock to the UserService responsible for accessing the database was created (under the user/\__mocks__ directory) to return a user stub (defined next to the scrip t of test). than a script for testing the login service was created under authentification/service directory 
 
-=> with jest i am still facing an issue with expecting an error of some for (Unauthorized or BadRequest)
+=> with jest i am still facing an issue with expecting an error of some form (Unauthorized or BadRequest)
 
 => Update : Fixed the issue with the exceptions
