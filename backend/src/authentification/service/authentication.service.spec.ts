@@ -46,21 +46,21 @@ describe('Authentication', () => {
     expect(response.token).not.toBeNull();
   });
 
-  // it('should raise a not found exception', async () => {
-  //   const payload = {
-  //     username: 'wassim',
-  //     password: 'ramzi',
-  //   };
-  //   await expect(service.login(payload)).toThrowError(
-  //     new NotFoundException('There is no user with provided username'),
-  //   );
-  // });
+  it('should raise a not found exception', async () => {
+    const payload = {
+      username: 'wassim',
+      password: 'ramzi',
+    };
+    await expect(service.login(payload)).rejects.toThrow(
+      'There is no user with provided username',
+    );
+  });
 
-  // it('should raise a Unauthorized exception', async () => {
-  //   const payload = {
-  //     username: 'ramzi',
-  //     password: 'notramzi',
-  //   };
-  //   await expect(service.login(payload)).toThrowError('incorrect password');
-  // });
+  it('should raise a Unauthorized exception', async () => {
+    const payload = {
+      username: 'ramzi',
+      password: 'notramzi',
+    };
+    await expect(service.login(payload)).rejects.toThrow('incorrect password');
+  });
 });

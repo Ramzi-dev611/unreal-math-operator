@@ -16,11 +16,11 @@ describe('Fibonacci', () => {
     expect(service).toBeDefined();
   });
 
-  // it('should throw an error', () => {
-  //   expect(service.calculateFibonacci(-5)).toThrow(
-  //     new Error('No negative indexes for fibonacci sequence'),
-  //   );
-  // });
+  it('should throw an error', () => {
+    expect(() => {
+      service.calculateFibonacci(-5);
+    }).toThrow('No negative indexes for fibonacci sequence');
+  });
 
   it('should be equal to 8', () => {
     expect(service.calculateFibonacci(5)).toEqual(8);

@@ -10,14 +10,8 @@ export class AppController {
   @Post('fibonacci')
   calculateFibonacci(@Body() payload: FibonacciRequestDto): ServiceResponseDto {
     const { input } = payload;
-    try {
-      const response = this.appService.calculateFibonacci(input);
-      return { response };
-    } catch {
-      throw new BadRequestException(
-        'No negative indexes for fibonacci sequence',
-      );
-    }
+    const response = this.appService.calculateFibonacci(input);
+    return { response };
   }
 
   @Post('secondDegreeResolver')

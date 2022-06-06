@@ -5,7 +5,9 @@ import ServiceResponseDto from '../dto/serviceResponse.dto';
 export class AppService {
   calculateFibonacci(input: number): number {
     if (input < 0) {
-      throw new Error('No negative indexes for fibonacci sequence');
+      throw new BadRequestException(
+        'No negative indexes for fibonacci sequence',
+      );
     }
     let a = 1,
       b = 1,

@@ -1,3 +1,4 @@
+import { BadRequestException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import ServiceResponseDto from 'src/dto/serviceResponse.dto';
 import { AppService } from './app.service';
@@ -17,11 +18,11 @@ describe('Fibonacci', () => {
     expect(service).toBeDefined();
   });
 
-  // it('should throw an error', () => {
-  //   expect(service.resolveSecondDegreeService(-5)).toThrow(
-  //     new BadRequestException('the equation provided has no solution'),
-  //   );
-  // });
+  it('should throw an error', () => {
+    expect(() => {
+      service.resolveSecondDegreeService(1, 1, 1);
+    }).toThrow('the equation provided has no solution');
+  });
 
   it('should return two responses with values -0.5 and 0.5', () => {
     const serviceResponse: ServiceResponseDto =
