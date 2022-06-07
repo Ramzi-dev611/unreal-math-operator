@@ -48,9 +48,8 @@ describe('login endpoint test', () => {
       .expect(201)
       .then((response) => {
         const { token } = response.body;
-        expect(token).toBeInstanceOf(String);
-      })
-      .catch((error) => console.log(error));
+        expect(token).not.toBeNull();
+      });
   });
 
   it('POST: login with unvalid usernamemust throw an error', () => {
@@ -70,15 +69,14 @@ describe('login endpoint test', () => {
   it('POST: login with wrong password should throw an error', () => {
     return request(app.getHttpServer())
       .post('/authentification/login')
-      .send({ username: 'notramzi', password: 'ramzi' })
-      .expect(403)
+      .send({ username: 'ramzi', password: 'notramzi' })
+      .expect(401)
       .then((response) => {
         expect(response.body).toEqual({
           error: 'Unauthorized',
           message: 'incorrect password',
-          statusCode: 404,
+          statusCode: 401,
         });
-      })
-      .catch((error) => console.log(error));
+      });
   });
 });
