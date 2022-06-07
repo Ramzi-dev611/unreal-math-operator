@@ -18,4 +18,4 @@
 
 * With the above being said, only end to end tests where implemented. for each endpoint there is a test suit that all can be found in the test directory at the same level as the src directory
 
-
+> In all the test suits create d the call to the database was mocked. Maybe in the future this repository will include a database mocking not just the calls

@@ -39,5 +39,5 @@ jobs:
             echo "SYNC_OPTION=${{secrets.SYNC_OPTION}}" >> prod.env
             echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> prod.env
             cd ..
-            /usr/libexec/docker/cli-plugins/docker-compose --env-file ./backend/prod.env up --build -d
+            /usr/libexec/docker/cli-plugins/docker-compose --env-file ./backend/prod.env up --build
           '

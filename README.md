@@ -14,9 +14,19 @@ So for the Software testing and the devops lab, i decided to create a nest appli
 * Git / Github : for version control and definition of the pipeline
 * AWS : as the host cloud provider 
 
+## CI / CD pipeline
+The pipeline for this repository is composed of two jobs: 
+* **Testing**: this job pulls the source code from github into a ubuntu machine , install deps and run the needed runs the created tests (unit and e2e tests)
+* **Deployment**: this job does the following:
+    * connects to an EC2 instance 
+    * stops the containers if they are working
+    * removes the old version of the code 
+    * clone the newer version of the code
+    * creates .env file with the needed env 
+    * creates the containers needed with docker compose
 
 ## DISCLAIMER
 The application is missing a lot of features and it is open for improvement. Who knows maybe i ll finish developping the rest of the desired features in the future
 
 ## Note for Mr Wassim
-The main application is in the folder backed there you can find a readme file that will explain the testing code i implemented
+* The main application is in the folder backed there you can find a readme file that will explain the testing code i implemented and the location of each test script is provided inn more details under the src directory there

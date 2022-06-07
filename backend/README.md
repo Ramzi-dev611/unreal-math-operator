@@ -26,7 +26,7 @@ This repository contains a [Nest](https://github.com/nestjs/nest) application th
 * A fibonacci calculator taking in the body of the request the index of the element of the sequence requested and returns the desired element
 * A quadratic formula solver: an endpoints that takes as parameters three numbers a, b and c and returns the solutions x where **a x² + b x + c = 0**
 
-To simulate a communication with a database a login functionality is also created
+To simulate a communication with a database a login and register functionality were also created
 ## Installation
 
 ```bash
@@ -48,10 +48,9 @@ $ npm run start:prod
 
 ## Test
 
-Three types of testing where implemented in this repository: 
+Two types of testing where implemented in this repository: 
 * **unit Test**: this concernes the service of the major functionality mentionned earlier
-* **Integration Test**: for the login functionality
-* **e2e test**: testing the full process of the endpoint "/calculator/fibonacci"
+* **Integration Test / e2e test**: for the endpoints login, fibonacci and secondDegreeResolver
 
 > Keep in mind that the tests suits are located next to the component ofr the feature being tested
 
