@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-            docker-compose --env-file ./backend/prod.env down
+            /usr/libexec/docker/cli-plugins/docker-compose --env-file ./backend/prod.env down
             rm -Rf unreal-math-operator
             git clone https://github.com/Ramzi-dev611/unreal-math-operator.git
             cd unreal-math-operator/backend
@@ -39,5 +39,5 @@ jobs:
             echo "SYNC_OPTION=${{secrets.SYNC_OPTION}}" >> prod.env
             echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> prod.env
             cd ..
-            docker-compose --env-file ./backend/prod.env up --build
+            /usr/libexec/docker/cli-plugins/docker-compose --env-file ./backend/prod.env up --build
           '
