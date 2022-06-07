@@ -20,6 +20,7 @@ lerna-debug.log*
 
 # environment
 .env
+.env.prod
 
 
 # IDEs and editors

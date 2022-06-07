@@ -9,6 +9,7 @@ import { AuthentificationModule } from './authentification/authentification.modu
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: ['.env', '.env.prod'],
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({

@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  application: 
+    container_name: calculator-server
+    hostname: calculator-server
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    ports:
+      - 3001:3000
+    command: npm run start:prod
+    depends_on:
+      - database
+
+  database:
+    image: mysql:latest
+    hostname: database
+    container_name: database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=calculator
+    volumes:
+      - my-datavolume:/var/lib/mysql
+
+volumes:
+  my-datavolume:
