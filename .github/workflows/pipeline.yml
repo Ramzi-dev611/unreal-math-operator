@@ -11,4 +11,4 @@ jobs:
         with:
           node-version: "18" 
       - run: cd backend && npm install
-      - run: cd backend && npm test:e2e 
+      - run: cd backend && npm run test:e2e 
