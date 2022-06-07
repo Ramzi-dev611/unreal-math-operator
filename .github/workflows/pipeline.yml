@@ -13,3 +13,31 @@ jobs:
       - run: cd backend && npm install
       - run: cd backend && npm test
       - run: cd backend && npm run test:e2e 
+  BuildandDeply:
+    runs-on: ubuntu-latest
+    needs: Test
+    steps: 
+      - name: check out repository code
+        uses: actions/checkout@v3
+      - name: add code to EC2 and and Start Containers (Build & Deply)
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_PRIATE_KEY }}
+          HOSTNAME: ${{ secrets.EC2_HOSTNAME }}
+          USER_NAME: ubuntu
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+            docker-compose down
+            rm -Rf unreal-math-operator
+            git clone https://github.com/Ramzi-dev611/unreal-math-operator.git
+            cd unreal-math-operator/backend
+            touch prod.env
+            echo "DB_HOST=${{secrets.DB_HOST}}" >> prod.env
+            echo "DB_USERNAME=${{secrets.DB_USERNAME}}" >> prod.env
+            echo "DB_PASSWORD=${{secrets.DB_PASSWORD}}" >> prod.env
+            echo "DB_NAME=${{secrets.DB_NAME}}" >> prod.env
+            echo "SYNC_OPTION=${{secrets.SYNC_OPTION}}" >> prod.env
+            echo "JWT_SECRET=${{secrets.JWT_SECRET}}" >> prod.env
+            cd ..
+            docker-compose up --env-file ./backend/prod.env --build
+          '
