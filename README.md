@@ -26,6 +26,8 @@ The pipeline for this repository is composed of two jobs:
     * creates the containers needed with docker compose
 
 ## DISCLAIMER
+The deployment failed due to issues with connecting to the ec2 instance (time out / change in the hostname of the instance from aws ...)
+
 The application is missing a lot of features and it is open for improvement. Who knows maybe i ll finish developping the rest of the desired features in the future
 
 ## Note for Mr Wassim
