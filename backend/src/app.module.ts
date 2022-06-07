@@ -5,12 +5,11 @@ import { AppController } from './main/app.controller';
 import { AppService } from './main/app.service';
 import { UserModule } from './user/user.module';
 import { AuthentificationModule } from './authentification/authentification.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env', '.env.prod'],
       isGlobal: true,
+      envFilePath: ['.env', 'prod.env'],
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -20,7 +19,7 @@ import { AuthentificationModule } from './authentification/authentification.modu
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: process.env.SYNC_OPTION == 'true',
     }),
     UserModule,
     AuthentificationModule,
