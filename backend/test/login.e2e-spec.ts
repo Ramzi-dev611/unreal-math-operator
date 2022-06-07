@@ -1,10 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AuthentificationModule } from '../src/authentification/authentification.module';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { UserEntity } from '../src/user/entity/user.entity';
 import { userStub } from '../src/authentification/service/stubs/user.stub';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthentificationController } from '../src/authentification/controller/authentification.controller';
+import { UserModule } from '../src/user/user.module';
+import { AuthentificationService } from '../src/authentification/service/authentification.service';
 
 describe('login endpoint test', () => {
   let app: INestApplication;
@@ -18,7 +22,17 @@ describe('login endpoint test', () => {
   };
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AuthentificationModule],
+      imports: [
+        UserModule,
+        PassportModule.register({
+          defaultStrategy: 'jwt',
+        }),
+        JwtModule.register({
+          secret: 'test secret',
+        }),
+      ],
+      controllers: [AuthentificationController],
+      providers: [AuthentificationService],
     })
       .overrideProvider(getRepositoryToken(UserEntity))
       .useValue(userRepositoyMock)

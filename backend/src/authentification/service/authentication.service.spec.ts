@@ -1,20 +1,19 @@
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../app.module';
 import { UserModule } from '../../user/user.module';
 import { AuthentificationService } from './authentification.service';
 import { UserService } from '../../user/repository/user.service';
 import AuthentificationResponseDto from '../../dto/authentificationResponse.dto';
 import { UserServiceMock } from '../../user/__mocks__/user.service';
-import { NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { UserEntity } from '../../user/entity/user.entity';
 
 describe('Authentication', () => {
   let service: AuthentificationService;
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        AppModule,
         PassportModule.register({
           defaultStrategy: 'jwt',
         }),
@@ -25,6 +24,8 @@ describe('Authentication', () => {
       ],
       providers: [AuthentificationService],
     })
+      .overrideProvider(getRepositoryToken(UserEntity))
+      .useValue({})
       .overrideProvider(UserService)
       .useValue(UserServiceMock)
       .compile();
