@@ -12,7 +12,7 @@ So for the Software testing and the devops lab, i decided to create a nest appli
 * Jest : for unit and end to end testing
 * Docker: for the containerization of the application
 * Git / Github : for version control and definition of the pipeline
-* AWS : as the host cloud provider
+* AWS : as the host cloud provider 
 
 
 ## DISCLAIMER
