@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -29,5 +30,26 @@ export class AuthentificationService {
         token: await this.jwtService.sign({ id: user.id, username: username }),
       };
     } else throw new UnauthorizedException('incorrect password');
+  }
+
+  async register(payload: LoginDto): Promise<AuthentificationResponseDto> {
+    const { username, password } = payload;
+    const checkUser: UserEntity = await this.userService.getUserByUsername(
+      username,
+    );
+    if (checkUser != undefined) {
+      throw new BadRequestException(
+        'There is already a user with provided username',
+      );
+    }
+    const salt = await bcrypt.genSalt();
+    const savedPassword = await bcrypt.hash(password, salt);
+    const user: UserEntity = await this.userService.saveUser({
+      username,
+      password: savedPassword,
+    });
+    return {
+      token: await this.jwtService.sign({ id: user.id, username: username }),
+    };
   }
 }

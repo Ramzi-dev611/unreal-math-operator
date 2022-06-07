@@ -11,4 +11,11 @@ export class AuthentificationController {
   async login(@Body() payload: LoginDto): Promise<AuthentificationResponseDto> {
     return await this.authService.login(payload);
   }
+
+  @Post('register')
+  async register(
+    @Body() payload: LoginDto,
+  ): Promise<AuthentificationResponseDto> {
+    return await this.authService.register(payload);
+  }
 }

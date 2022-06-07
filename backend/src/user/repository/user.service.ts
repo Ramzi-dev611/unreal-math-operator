@@ -18,4 +18,8 @@ export class UserService {
     });
     return user;
   }
+
+  async saveUser(user: Partial<UserEntity>): Promise<UserEntity> {
+    return await this.userRepository.save(user);
+  }
 }
